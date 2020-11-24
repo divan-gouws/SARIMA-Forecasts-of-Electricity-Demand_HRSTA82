@@ -1,5 +1,5 @@
 # dependencies of this script
-list.of.packages <- c('dplyr', 'magrittr')
+list.of.packages <- c('xts')
 
 # install packages if not already installed
 for (package in list.of.packages){
@@ -11,6 +11,12 @@ lapply(list.of.packages, require, character.only = TRUE)
 
 # set working directory and load the data
 setwd("C:/Users/gouws/Google Drive/UNISA/HRSTA82 - Research Project in Statistics/Research Project/SARIMA_forecasts")
-elec_df <- read.table("./data/StatsSA_Electricity_GWh.csv", sep = ",", header = TRUE, fileEncoding="UTF-8-BOM", stringsAsFactors = FALSE)
+elec_df <- read.table("./data/StatsSA_Electricity_GWh.csv", sep = ",", 
+                      header = TRUE, fileEncoding="UTF-8-BOM", 
+                      stringsAsFactors = FALSE, row.names = 'Month')
 
-elec_df %<>% mutate(Month=as.Date(paste("01", substr(Month, 3, 10), sep = ""), format="%d%m%Y"))
+# remove 'MO' from index and prepend 01 as a default day to enable conversion to date
+rownames(elec_df) <- paste("01", substr(rownames(elec_df), 3, 10), sep = "")
+
+# convert to xts object
+elec_xts <- xts(elec_df, order.by = as.Date(rownames(elec_df), format="%d%m%Y"))
