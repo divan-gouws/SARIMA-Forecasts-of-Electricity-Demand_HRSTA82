@@ -1,5 +1,5 @@
 # dependencies of this script
-list.of.packages <- c('xts')
+list.of.packages <- c('tseries', 'TSA', 'ggplot2', 'fpp2')
 
 # load all dependent packages
 lapply(list.of.packages, require, character.only = TRUE)
@@ -9,8 +9,9 @@ elec_df <- read.table("./data/StatsSA_Electricity_GWh.csv", sep = ",",
                       header = TRUE, fileEncoding="UTF-8-BOM", 
                       stringsAsFactors = FALSE, row.names = 'Month')
 
-# remove 'MO' from index and prepend 01 as a default day to enable conversion to date
-rownames(elec_df) <- paste("01", substr(rownames(elec_df), 3, 10), sep = "")
+# create time series object
+elec_ts <- ts(elec_df[, 1], start = c(2010, 1), frequency = 12)
 
-# convert to xts object
-elec_xts <- xts(elec_df, order.by = as.Date(rownames(elec_df), format="%d%m%Y"))
+# split the data into the model and validation sets
+elec_first <- window(elec_ts, start = c(2010, 1), end = c(2014, 12))
+elec_second <- window(elec_ts, start = c(2015, 1), end = c(2019, 12))
