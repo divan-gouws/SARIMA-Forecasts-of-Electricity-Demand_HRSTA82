@@ -1,5 +1,5 @@
 # dependencies of this script
-list.of.packages <- c('tseries', 'TSA', 'ggplot2', 'fpp2')
+list.of.packages <- c('tseries', 'TSA', 'ggplot2', 'fpp2', 'forecast', 'uroot')
 
 # load all dependent packages
 lapply(list.of.packages, require, character.only = TRUE)

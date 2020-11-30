@@ -1,3 +1,5 @@
+# add mean back to centered data for forecasting
+
 # naive forecasts
 elec_naive <- naive(elec_first, h=60)
 autoplot(elec_naive)
