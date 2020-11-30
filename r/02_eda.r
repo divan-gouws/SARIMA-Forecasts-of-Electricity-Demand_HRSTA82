@@ -1,3 +1,5 @@
+# do i need to stabilize variance?
+
 # plot
 autoplot(elec_first, main = "Electricity demand in South Africa", xlab = "Time", ylab = "Gigawatt-hours")
 ggseasonplot(elec_first)
