@@ -5,10 +5,14 @@ abline(h=0)
 # residuals should look like white noise (uncorrelated) else there is info in residuals
 # mean(res) = 0 else the forecasts are biased
 
+# independence of residuals
+runs(rstudent(model1))
+
 # res must have constant variance
 bptest(model1)
 
 # res must be normally distributed
+shaprio.test(rstudent(model1))
 # checkresiduals() function may be useful
 
 # ACF of residuals

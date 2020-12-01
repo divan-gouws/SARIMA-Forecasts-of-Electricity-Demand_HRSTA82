@@ -5,7 +5,7 @@ list.of.packages <- c('tseries', 'TSA', 'ggplot2', 'fpp2', 'forecast', 'uroot')
 lapply(list.of.packages, require, character.only = TRUE)
 
 # load data
-elec_df <- read.table("./data/StatsSA_Electricity_GWh.csv", sep = ",", 
+elec_df <- read.table("./../data/StatsSA_Electricity_GWh.csv", sep = ",", 
                       header = TRUE, fileEncoding="UTF-8-BOM", 
                       stringsAsFactors = FALSE, row.names = 'Month')
 

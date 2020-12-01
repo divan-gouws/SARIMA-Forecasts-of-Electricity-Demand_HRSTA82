@@ -2,3 +2,4 @@ data/
 papers/
 !StatsSA_Electricity_GWh.csv
 .Rproj.user
+output/

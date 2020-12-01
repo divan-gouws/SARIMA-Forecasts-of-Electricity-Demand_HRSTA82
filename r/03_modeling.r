@@ -1,5 +1,7 @@
 # Portmanteau Q test for white noise. null hypothesis is white noise.
-Box.test(elec_first, type = "Ljung-Box")
+k <- c(1:12)
+BoxFunction <- function(k){Box.test(elec_first, lag = k, type = "Ljung-Box")}
+lapply(k, BoxFunction)
 
 # heteroskedasticity tests
 
