@@ -3,6 +3,9 @@ k <- c(1:12)
 BoxFunction <- function(k){Box.test(elec_first, lag = k, type = "Ljung-Box")}
 lapply(k, BoxFunction)
 
+# https://otexts.com/fpp2/residuals.html
+Box.test(elec_first, lag = 24, type = "Ljung-Box")
+
 # heteroskedasticity tests
 
 # stationarity tests
@@ -18,6 +21,9 @@ ch.test(elec_first, type = "dummy", sid = 12)
 # Use the auto arima to select the model with the lowest AIC
 automod <- auto.arima(elec_first)
 
-model1 <- arima(elec_first,order=c(0, 1, 1), 
+# appears as though AR 1 and 12. MA 1,2,3,12,13,14
+model1 <- arima(elec_first,order=c(1, 0, 0), 
                 seasonal=list(order=c(0, 1, 1), period=12))
-model1
+AIC(model1)
+BIC(model1)
+AICc(model1)
