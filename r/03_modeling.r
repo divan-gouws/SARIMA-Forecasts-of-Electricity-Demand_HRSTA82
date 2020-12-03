@@ -1,7 +1,7 @@
 # Portmanteau Q test for white noise. null hypothesis is white noise.
-k <- c(1:12)
-BoxFunction <- function(k){Box.test(elec_first, lag = k, type = "Ljung-Box")}
-lapply(k, BoxFunction)
+# k <- c(1:12)
+# BoxFunction <- function(k){Box.test(elec_first, lag = k, type = "Ljung-Box")}
+# lapply(k, BoxFunction)
 
 # https://otexts.com/fpp2/residuals.html
 Box.test(elec_first, lag = 24, type = "Ljung-Box")
@@ -27,3 +27,6 @@ model1 <- arima(elec_first,order=c(1, 0, 0),
 AIC(model1)
 BIC(model1)
 AICc(model1)
+accuracy(model1)
+
+coeftest(model1)
