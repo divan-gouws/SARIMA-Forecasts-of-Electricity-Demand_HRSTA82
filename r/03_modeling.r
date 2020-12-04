@@ -4,7 +4,8 @@
 # lapply(k, BoxFunction)
 
 # https://otexts.com/fpp2/residuals.html
-Box.test(elec_first, lag = 24, type = "Ljung-Box")
+#Box.test(elec_first, lag = 24, type = "Ljung-Box")
+LjungBoxTest(elec_first, lag.max = 24)
 
 # heteroskedasticity tests
 
@@ -28,5 +29,9 @@ AIC(model1)
 BIC(model1)
 AICc(model1)
 accuracy(model1)
+
+model2 <- arima(elec_first,order=c(1, 0, 0), 
+                seasonal=list(order=c(0, 1, 1), period=12),
+                xreg=level)
 
 coeftest(model1)
