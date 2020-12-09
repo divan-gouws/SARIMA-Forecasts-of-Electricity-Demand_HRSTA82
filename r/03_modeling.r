@@ -24,7 +24,7 @@ automod <- auto.arima(elec_first)
 
 # appears as though AR 1 and 12. MA 1,2,3,12,13,14
 model1 <- arima(elec_first,order=c(1, 0, 0), 
-                seasonal=list(order=c(0, 1, 1), period=12))
+                seasonal=list(order=c(0, 1, 1), period=12), method = "ML")
 AIC(model1)
 BIC(model1)
 AICc(model1)
